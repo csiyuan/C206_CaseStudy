@@ -8,9 +8,9 @@ public class CategoryDB {
 	}
 	
 	public static String retrieveAllCategory(ArrayList<Category> catList) {
-		return retrieveCC(catList);
+		return retrieveList(catList);
 	}
-	private static String retrieveCC(ArrayList<Category> catList) {
+	private static String retrieveList(ArrayList<Category> catList) {
 		String output = "";
 
 		for (int i = 0; i < catList.size(); i++) {
