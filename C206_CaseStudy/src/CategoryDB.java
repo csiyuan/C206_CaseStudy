@@ -7,7 +7,7 @@ public class CategoryDB {
 		catList.add(cat);
 	}
 	
-	public static String retrieveAllCategory(ArrayList<Category> catList) {
+	public static String viewAllCategory(ArrayList<Category> catList) {
 		return retrieveList(catList);
 	}
 	private static String retrieveList(ArrayList<Category> catList) {
@@ -24,5 +24,14 @@ public class CategoryDB {
 		if (catList.size() !=0) {
 			catList.remove(c);
 		}
+	}
+	
+	public static void showCategory(Category c) {
+		String output = "";
+		for (int i =0; i <catList.size(); i++) {
+			output = catList.get(i).getName();
+			System.out.println(output);
+		}
+		
 	}
 }

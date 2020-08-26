@@ -45,7 +45,7 @@ public class CategoryTest {
 	
 		
 		//Test that the expected output string is the same as the list of category retrieved 
-		String allCategory = CategoryDB.retrieveAllCategory(CategoryDB.catList);
+		String allCategory = CategoryDB.viewAllCategory(CategoryDB.catList);
 		String testOutput = "";
 		assertEquals("Test that the size of catList is 1 after viewing categories", testOutput, allCategory);
 
