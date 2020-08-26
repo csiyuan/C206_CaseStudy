@@ -27,10 +27,10 @@ public class CategoryDB {
 	}
 	
 	public static void showCategory(Category c) {
-		String show = "";
+		String output = "";
 		for (int i =0; i <catList.size(); i++) {
-			show = catList.get(i).getName();
-			System.out.println(show);
+			output = catList.get(i).getName();
+			System.out.println(output);
 		}
 		
 	}
