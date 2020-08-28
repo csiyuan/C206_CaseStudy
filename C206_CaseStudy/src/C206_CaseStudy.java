@@ -56,8 +56,10 @@ public class C206_CaseStudy {
 					categoryoption = Helper.readInt("Select category number...");
 				}
 
-			} else {
-				System.out.println("Invalid option");
+			} else if (option == 4){
+				System.out.println("Thank you for visiting the shop!");
+				break;
+			} else {				System.out.println("Invalid option");
 			}
 
 		}
