@@ -68,9 +68,10 @@ public class Deal {
 
 	
 	
-	public String toString() {
-		return "Deal [dealID=" + dealID + ", itemName=" + itemName + ", sellerEmail=" + sellerEmail + ", buyerEmail="
-				+ buyerEmail + ", dealPrice=" + dealPrice + ", closeDate=" + closeDate + "]";
+	public String toString() { 
+		return "Deal ID: " + dealID + "\nDeal Name: " + itemName   
+				+ "\nSeller Email:" + sellerEmail + "\nBuyer Email: "
+				+ buyerEmail + "\nDeal Price: $" + dealPrice + "\nClose Date: " + closeDate +"\n\n" ;
 	} 
 	
 	
