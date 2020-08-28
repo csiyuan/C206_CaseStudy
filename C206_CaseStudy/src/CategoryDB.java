@@ -27,4 +27,8 @@ public class CategoryDB {
 		}
 	}
 	
+	public static void updateCategory(Category c) {
+		
+	}
+	
 }

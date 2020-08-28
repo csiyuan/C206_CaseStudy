@@ -5,7 +5,8 @@ public class C206_CaseStudy {
 	
 	public static void main(String[] args) {
 		int option = 0;
-		int cusoption = 0;
+		int buyeroption = 0;
+		int selleroption = 0;
 		int adminoption = 0;
 		Category cat1 = new Category ("Books");
 		Category cat2 = new Category ("Electronics");
@@ -22,11 +23,11 @@ public class C206_CaseStudy {
 				C206_CaseStudy.viewAllCategory(catList);
 
 			} else if (option == 2) {
-				C206_CaseStudy.CustomerMenu();
-				cusoption = Helper.readInt("Enter an option > ");
-				if (cusoption == 1) {
+				C206_CaseStudy.BuyerMenu();
+				buyeroption = Helper.readInt("Enter an option : ");
+				if (buyeroption == 1) {
 					//Search item
-				} else if (cusoption == 2) {
+				} else if (buyeroption == 2) {
 					String result = Helper.readString("Enter category name: ");
 					for (int i = 0; i < catList.size(); i++) {
 						if (catList.get(i).getName().toString() == result) {
@@ -35,15 +36,32 @@ public class C206_CaseStudy {
 							System.out.println("No such category found.");
 						}
 					}
-				} else if (cusoption == 3) {
-						//Manage Deals
+				} else if (buyeroption == 3) {
+						//Manage Buyer Deals
 						
+				} else if (option ==3 ) {
+					C206_CaseStudy.SellerMenu();
+					selleroption = Helper.readInt("Enter option: ");
+					if (selleroption == 1) {
+						//Search item
+					} else if (selleroption == 2) {
+						String result = Helper.readString("Enter category name: ");
+						for (int i = 0; i < catList.size(); i++) {
+							if (catList.get(i).getName().toString() == result) {
+								System.out.println("Results:" + catList.get(i).toString());
+							} else {
+								System.out.println("No such category found.");
+							}
+						}
+					} else if (selleroption == 3) {
+							//Manage Seller Deals
+					
 				} else {
 					System.out.println("Invalid option!");
 					break;
 				}
 
-			} else if (option == 3) {
+			} else if (option == 4) {
 				C206_CaseStudy.AdminMenu();
 				adminoption = Helper.readInt("Enter an option > ");
 				if (adminoption == 1) {
@@ -52,15 +70,19 @@ public class C206_CaseStudy {
 						C206_CaseStudy.viewAllCategory(catList);
 					}
 					int categoryoption = Helper.readInt("Select category number...");
+				} else if(adminoption == 2) {
+					//manage admin users
+				} else if (adminoption == 3) {
+					//manage admin deals
 				}
 
-			} else if (option == 4){
+			} else if (option == 5){
 				System.out.println("Thank you for visiting the shop!");
 				break;
 			} else {
 				System.out.println("Invalid option");
 			}
-
+			}
 		}
 		
 	}
@@ -77,15 +99,23 @@ public class C206_CaseStudy {
 	public static void menu() {
 		System.out.println("Campus Online Auction Shop");
 		System.out.println("1. View all categories");
-		System.out.println("2. Login as customer");
-		System.out.println("3. Login as admin");
-		System.out.println("4. Quit");
+		System.out.println("2. Login as buyer");
+		System.out.println("3. Login as seller");
+		System.out.println("4. Login as admin");
+		System.out.println("5. Quit");
 		Helper.line(80, "-");
 
 	}
-	private static void CustomerMenu() {
+	private static void BuyerMenu() {
 
-		C206_CaseStudy.setHeader("Customer's Home Page");
+		C206_CaseStudy.setHeader("Buyer's Home Page");
+		System.out.println("1. Search item");
+		System.out.println("2. Search category");
+		System.out.println("3. Manage your deals");
+	}
+	private static void SellerMenu() {
+
+		C206_CaseStudy.setHeader("Seller's Home Page");
 		System.out.println("1. Search item");
 		System.out.println("2. Search category");
 		System.out.println("3. Manage your deals");
