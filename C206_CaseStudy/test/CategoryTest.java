@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CategoryTest {
 	private Category cat1,cat2;
-	public static ArrayList<Category> catList = new ArrayList<Category>();
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -20,34 +20,34 @@ public class CategoryTest {
 	@After
 	public void tearDown() throws Exception {
 		cat1 = null;
-		catList.clear();
+		CategoryDB.catList.clear();
 	}
 
 	@Test
 	public void addCategoryTest() {
 		//Test that catList is NOT null 
-		assertNotNull("Test that catList is NOT null", catList);
+		assertNotNull("Test that catList is NOT null", CategoryDB.catList);
 
 		//Test that the size of catList is 1 after adding a category
 		CategoryDB.addCategory(cat1);
-		assertEquals("Test that the size of catList is 1 after adding a category",1, catList.size());
+		assertEquals("Test that the size of catList is 1 after adding a category",1, CategoryDB.catList.size());
 		
 		//Test that the first element in catList is the same as what was added.
-		assertSame("Test that the first element in catList is the same as what was added.", cat1, catList.get(0));
+		assertSame("Test that the first element in catList is the same as what was added.", cat1, CategoryDB.catList.get(0));
 	
 	}
 
 	@Test
 	public void viewCategoryTest() {
 		//Test that catList is not null but empty
-		assertNotNull("Test that catList is not null but empty", catList);
+		assertNotNull("Test that catList is not null but empty", CategoryDB.catList);
 		
 		//Test that the size of catList is 0 before viewing categories
-		assertEquals("Test that the size of catList is 0 before viewing any categories", 0, catList.size());
+		assertEquals("Test that the size of catList is 0 before viewing any categories", 0, CategoryDB.catList.size());
 	
 		
 		//Test that the expected output string is the same as the list of category retrieved 
-		String allCategory = CategoryDB.viewAllCategory(catList);
+		String allCategory = CategoryDB.viewAllCategory(CategoryDB.catList);
 		String testOutput = "";
 		assertEquals("Test that the size of catList is 1 after viewing categories", testOutput, allCategory);
 
@@ -55,27 +55,27 @@ public class CategoryTest {
 	@Test
 	public void deleteCategoryTest() {
 		//Test if there is a valid category to delete from
-		assertNotNull("Test if there is a valid category to delete from", catList);
+		assertNotNull("Test if there is a valid category to delete from", CategoryDB.catList);
 		
 		//Test if the category is not null
 		CategoryDB.addCategory(cat1);
 		CategoryDB.addCategory(cat2);
-		assertEquals("Test if the category is not null",2, catList.size());
+		assertEquals("Test if the category is not null",2, CategoryDB.catList.size());
 
 		//Test if the list has only one item after deleting
 		CategoryDB.deleteCategory(cat1);
-		assertEquals("Test if the list has only one item after deleting", 1, catList.size());
+		assertEquals("Test if the list has only one item after deleting", 1, CategoryDB.catList.size());
 	}
 	@Test
 	public void updateCategoryTest() {
 		//Test if there is a valid category to update
-		assertNotNull("Test if there is a valid category to update", catList);
+		assertNotNull("Test if there is a valid category to update", CategoryDB.catList);
 		
 		//Test if administrator can update category details
 		CategoryDB.addCategory(cat1);
 		String catname = "E-books";
 		String name = "Category name:" + catname;
 		cat1.setName(catname);
-		assertEquals("Test if admin can update category details", name, catList.get(0).toString());
+		assertEquals("Test if admin can update category details", name, CategoryDB.catList.get(0).toString());
 	}
 }
