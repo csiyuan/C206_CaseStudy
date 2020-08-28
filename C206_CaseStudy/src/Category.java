@@ -14,11 +14,9 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-
+	
 	public String toString() {
-		return "Category [name=" + name + "]";
+		return "Category name:" + name;
 	}
 	
 	
