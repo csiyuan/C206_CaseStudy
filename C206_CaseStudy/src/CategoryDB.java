@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class CategoryDB extends CategoryTest{
-
+public class CategoryDB {
+	public static ArrayList<Category> catList = new ArrayList<Category>();
 
 	public static void addCategory(Category cat) {
-		catList.add(cat);
+		CategoryTest.catList.add(cat);
 	}
 	
 	public static String viewAllCategory(ArrayList<Category> catList) {
@@ -21,8 +21,8 @@ public class CategoryDB extends CategoryTest{
 	}
 	
 	public static void deleteCategory(Category c) {
-		if (catList.size() !=0) {
-			catList.remove(c);
+		if (CategoryTest.catList.size() !=0) {
+			CategoryTest.catList.remove(c);
 		}
 	}
 	
