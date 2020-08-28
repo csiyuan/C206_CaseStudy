@@ -25,7 +25,7 @@ public class C206_CaseStudy {
 				C206_CaseStudy.CustomerMenu();
 				cusoption = Helper.readInt("Enter an option > ");
 				if (cusoption == 1) {
-					
+					//Search item
 				} else if (cusoption == 2) {
 					String result = Helper.readString("Enter category name: ");
 					for (int i = 0; i < catList.size(); i++) {
@@ -36,9 +36,8 @@ public class C206_CaseStudy {
 						}
 					}
 				} else if (cusoption == 3) {
-					
-				} else if (cusoption == 4) {
-					
+						//Manage Deals
+						
 				} else {
 					System.out.println("Invalid option!");
 					break;
@@ -48,18 +47,18 @@ public class C206_CaseStudy {
 				C206_CaseStudy.AdminMenu();
 				adminoption = Helper.readInt("Enter an option > ");
 				if (adminoption == 1) {
-					int categoryoption = 0;
 					System.out.println("Category List");
 					for (int i = 0; i < catList.size(); i++) {
 						C206_CaseStudy.viewAllCategory(catList);
 					}
-					categoryoption = Helper.readInt("Select category number...");
+					int categoryoption = Helper.readInt("Select category number...");
 				}
 
 			} else if (option == 4){
 				System.out.println("Thank you for visiting the shop!");
 				break;
-			} else {				System.out.println("Invalid option");
+			} else {
+				System.out.println("Invalid option");
 			}
 
 		}
@@ -89,8 +88,7 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("Customer's Home Page");
 		System.out.println("1. Search item");
 		System.out.println("2. Search category");
-		System.out.println("3. Sell an item");
-		System.out.println("4. Manage your items");
+		System.out.println("3. Manage your deals");
 	}
 	private static void AdminMenu() {
 
@@ -100,13 +98,15 @@ public class C206_CaseStudy {
 		System.out.println("3. Manage deals");
 		System.out.println("4. Quit");
 	}
+	
+
 	// ----------------------------------- Menu --------------------------------//
 	
 	
 	
 	
 	
-	// ----------------------------- Category ----------------------------------//
+	// ----------------------------- Category ---------------------------------- (Julien)//
 	public static void addCategory(Category cat) {
 		catList.add(cat);
 	}
@@ -133,6 +133,6 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	// ----------------------------- Category ----------------------------------//
+	// ----------------------------- Category ---------------------------------- (Julien)//
 }
 
