@@ -5,46 +5,35 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class C206_CaseStudyTest {
-
+	private Deal d1, d2;
+	
 	@Before
 	public void setUp() throws Exception {
+		d1 = new Deal("123","TestItem", "testSeller@gmail.com", "testBuyer@gmail.com", 12.0, "12/01/12");
+		d2 = new Deal("321","TestItem2", "testSeller2@gmail.com", "testBuyer2@gmail.com", 13.0, "12/01/12");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		d1 = null;
+		d2 = null;
+		DealDB.dealList.clear();
 	}
 
 	@Test
 	public void c206_test() {
 		//fail("Not yet implemented"); 
 		assertTrue("C206_CaseStudy_SampleTest ",true);
+	}	
 		
 		
-		import static org.junit.Assert.*;
+//===============================================DEALS=========================================================================//			
 
-		import org.junit.After;
-		import org.junit.Before;
-		import org.junit.Test;
-
-		public class DealTest {
 			
-			private Deal d1, d2;
+			
+ 
 
-			@Before
-			public void setUp() throws Exception {
-				d1 = new Deal("123","TestItem", "testSeller@gmail.com", "testBuyer@gmail.com", 12.0, "12/01/12");
-				d2 = new Deal("321","TestItem2", "testSeller2@gmail.com", "testBuyer2@gmail.com", 13.0, "12/01/12");
-
-				
-			}
-
-			@After
-			public void tearDown() throws Exception {
-				d1 = null;
-				d2 = null;
-				DealDB.dealList.clear();
-			}
-
+		 
 			@Test
 			public void addDealTest() {
 				 //Testing dealList is not null
@@ -61,7 +50,6 @@ public class C206_CaseStudyTest {
 				assertEquals("test that the first element in dealList is the same as what we added", d1, DealDB.dealList.get(0));
 			}
 			
-//===============================================DEALS=========================================================================//			
 			
 			public void viewDealTest() {
 				 //Testing dealList is not null
@@ -160,10 +148,10 @@ public class C206_CaseStudyTest {
 //===============================================DEALS=========================================================================//			
 
 
-		}
-
-		
-		
-	}
-
 }
+
+		
+		
+	
+
+

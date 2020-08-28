@@ -3,14 +3,11 @@ import java.util.ArrayList;
 public class DealDB {
 
 	public static ArrayList<Deal> dealList = new ArrayList<Deal>();
-	public String itemName;
-	public String sellerEmail;
-	public String buyerEmail;
-	public double dealPrice;
-	public String closeDate;
 	
-	public static void addDeal(Deal d) {
-
+	
+	public static void addDeal(Deal d ) {
+		 
+		 
 		dealList.add(d);
 	}
 	

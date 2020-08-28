@@ -46,7 +46,9 @@ public class C206_CaseStudy {
 					}
 				} else if (buyeroption == 3) {
 						//Manage Buyer Deals
+					
 					C206_CaseStudy.BuyerDealMenu();
+					
 					int buyerChoice = Helper.readInt("Enter an option: ");
 					
 					if(buyerChoice == 1) { //view Deals
@@ -58,9 +60,43 @@ public class C206_CaseStudy {
 						String dealIDToDelete = Helper.readString("Enter the deal ID you wish to delete: ");
 						C206_CaseStudy.delDeal(dealIDToDelete);
 					}
+					else { //search deals
+						
+						System.out.println(C206_CaseStudy.viewAllDeal());
+						System.out.println(" ");
+						C206_CaseStudy.SearchDealMenu();
+						
+						int searchByChoice = Helper.readInt("Enter how you want to search by: ");
+						if(searchByChoice == 1) {
+							String itemName = Helper.readString("Enter Item Name: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
+							
+						}else if(searchByChoice == 2){
+							String buyerEmail = Helper.readString("Enter Buyer Email: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
+							
+						}else if(searchByChoice == 3){
+							String sellerEmail = Helper.readString("Enter Buyer Email: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
+							
+						}else if(searchByChoice == 4){
+							double dealPrice = Helper.readDouble("Enter Deal Price: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
+						}else {
+							String closeDate = Helper.readString("Enter Close Date: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+						}
+						
+					}
 					
 						
-				} else if (option ==3 ) {
+				} 
+			}else if (option ==3 ) {
 					C206_CaseStudy.SellerMenu();
 					selleroption = Helper.readInt("Enter option: ");
 					if (selleroption == 1) {
@@ -76,7 +112,24 @@ public class C206_CaseStudy {
 						}
 					} else if (selleroption == 3) {
 							//Manage Seller Deals
-					
+						C206_CaseStudy.SellerDealMenu();
+						
+						int sellerChoice = Helper.readInt("Enter an option: ");
+						
+						if(sellerChoice == 1){ //add deal
+							
+							String dealID = Helper.readString("Enter Deal ID: ");
+							String itemName = Helper.readString("Enter Item Name: ");
+							String buyerEmail = Helper.readString("Enter Buyer Email: ");
+							String sellerEmail = Helper.readString("Enter Seller Email: ");
+							double dealPrice = Helper.readDouble("Enter Deal Price: ");
+							String date = Helper.readString("Enter Close Date: ");
+							Deal Deal = new Deal(dealID ,itemName, buyerEmail, sellerEmail, dealPrice, date);
+							
+							C206_CaseStudy.addDeal(Deal);
+						}
+						
+						
 				} else {
 					System.out.println("Invalid option!");
 					break;
@@ -106,7 +159,7 @@ public class C206_CaseStudy {
 			}
 		}
 		
-	}
+	
 	
 	
 	// ----------------------------------- Menu --------------------------------//
@@ -169,7 +222,7 @@ public class C206_CaseStudy {
 	        System.out.println("3. Search Deals");
 	        
 	       
-	        System.out.println("4. Quit");
+	        
 	    }
 	    
 	    
@@ -182,6 +235,17 @@ public class C206_CaseStudy {
 	        System.out.println("5. Update Deals");
 	       
 	        System.out.println("6. Quit");
+	    }
+	    
+	    private static void SearchDealMenu() { //David
+	        C206_CaseStudy.setHeader("Search Deals By:");
+	        System.out.println("1. Item Name");
+	        System.out.println("2. Buyer Email");
+	        System.out.println("3. Seller Email");
+	        System.out.println("4. Deal Price");
+	        System.out.println("5. Close Date");
+	       
+	        
 	    }
 
 	// ----------------------------------- Menu --------------------------------//
@@ -221,8 +285,9 @@ public class C206_CaseStudy {
 	
 	// ----------------------------- Deals ---------------------------------- (David)//
 	
-	public static void addDeal(Deal d) {
-
+	public static void addDeal(Deal d ) {
+		 
+		 
 		dealList.add(d);
 	}
 	
