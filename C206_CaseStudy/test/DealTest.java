@@ -128,7 +128,7 @@ public class DealTest {
 		assertEquals("Test that the size of userList is 0 before showing any Deals", 0, DealDB.dealList.size());
 		
 		// test that items get updated 
-		DealDB.updateDeal(d1, "testUpdate", "testBuyerUpdate@gmail.com", "testSellerUpdate@gmail.com", 15.0, "12/12/12");
+		DealDB.updateDeal("123", "testUpdate", "testBuyerUpdate@gmail.com", "testSellerUpdate@gmail.com", 15.0, "12/12/12");
 		
 	 
 		

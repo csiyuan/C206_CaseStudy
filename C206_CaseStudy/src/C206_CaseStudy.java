@@ -45,7 +45,7 @@ public class C206_CaseStudy {
 						}
 					}
 				} else if (buyeroption == 3) {
-						//Manage Buyer Deals
+						//Manage BUYER Deals - David
 					
 					C206_CaseStudy.BuyerDealMenu();
 					
@@ -111,7 +111,7 @@ public class C206_CaseStudy {
 							}
 						}
 					} else if (selleroption == 3) {
-							//Manage Seller Deals
+							//Manage SELLER Deals - David
 						C206_CaseStudy.SellerDealMenu();
 						
 						int sellerChoice = Helper.readInt("Enter an option: ");
@@ -127,7 +127,58 @@ public class C206_CaseStudy {
 							Deal Deal = new Deal(dealID ,itemName, buyerEmail, sellerEmail, dealPrice, date);
 							
 							C206_CaseStudy.addDeal(Deal);
+						}else if(sellerChoice == 2){ //view deals
+							System.out.println(C206_CaseStudy.viewAllDeal());
+							System.out.println(" ");
+							
+						}else if(sellerChoice == 3) { //Delete Deals
+							String dealIDToDelete = Helper.readString("Enter the Deal ID You would like to delete: ");
+							C206_CaseStudy.delDeal(dealIDToDelete);
+						
+						}else if(sellerChoice == 4) { //search deals
+							System.out.println(C206_CaseStudy.viewAllDeal());
+							System.out.println(" ");
+							C206_CaseStudy.SearchDealMenu();
+							
+							int searchByChoice = Helper.readInt("Enter how you want to search by: ");
+							if(searchByChoice == 1) {
+								String itemName = Helper.readString("Enter Item Name: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
+								
+							}else if(searchByChoice == 2){
+								String buyerEmail = Helper.readString("Enter Buyer Email: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
+								
+							}else if(searchByChoice == 3){
+								String sellerEmail = Helper.readString("Enter Buyer Email: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
+								
+							}else if(searchByChoice == 4){
+								double dealPrice = Helper.readDouble("Enter Deal Price: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
+							}else {
+								String closeDate = Helper.readString("Enter Close Date: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+							}
+						}else { //Update deals
+							
+							String NewdealID = Helper.readString("Enter which Deal ID you wish to update: ");
+							String NewitemName = Helper.readString("Enter your new item name: ");
+							String NewbuyerEmail = Helper.readString("Enter your new Buyer email: ");
+							String NewSellerEmail = Helper.readString("Enter your new Seller email: ");
+							double NewdealPrice = Helper.readDouble("Enter your new deal price: ");
+							String NewcloseDate = Helper.readString("Enter your new close date: ");
+							
+							C206_CaseStudy.updateDeal(NewdealID, NewitemName, NewbuyerEmail, NewSellerEmail, NewdealPrice, NewcloseDate);
+							System.out.println("");
+							System.out.println(C206_CaseStudy.viewAllDeal());
 						}
+						
 						
 						
 				} else {
@@ -147,7 +198,49 @@ public class C206_CaseStudy {
 				} else if(adminoption == 2) {
 					//manage admin users
 				} else if (adminoption == 3) {
-					//manage admin deals
+					//manage ADMIN deals - David
+					 C206_CaseStudy.AdminDealMenu();
+					int adminChoice = Helper.readInt("Enter Your choice: ");
+					
+					if(adminChoice == 1) { //View Deals
+						System.out.println(C206_CaseStudy.viewAllDeal());
+						System.out.println(" ");
+						
+					}else if(adminChoice == 2){ //Delete Deal
+						String dealIDToDelete = Helper.readString("Enter the Deal ID You would like to delete: ");
+						C206_CaseStudy.delDeal(dealIDToDelete);
+					}else {//Search Deals
+						System.out.println(C206_CaseStudy.viewAllDeal());
+						System.out.println(" ");
+						C206_CaseStudy.SearchDealMenu();
+						
+						int searchByChoice = Helper.readInt("Enter how you want to search by: ");
+						if(searchByChoice == 1) {
+							String itemName = Helper.readString("Enter Item Name: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
+							
+						}else if(searchByChoice == 2){
+							String buyerEmail = Helper.readString("Enter Buyer Email: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
+							
+						}else if(searchByChoice == 3){
+							String sellerEmail = Helper.readString("Enter Buyer Email: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
+							
+						}else if(searchByChoice == 4){
+							double dealPrice = Helper.readDouble("Enter Deal Price: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
+						}else {
+							String closeDate = Helper.readString("Enter Close Date: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+						}
+					}
+					
 				}
 
 			} else if (option == 5){
@@ -211,7 +304,7 @@ public class C206_CaseStudy {
 	        System.out.println("3. Search Deals");
 	    
 	       
-	        System.out.println("4. Quit");
+	         
 	    }
 	   
 	    private static void BuyerDealMenu() { //David
@@ -233,8 +326,7 @@ public class C206_CaseStudy {
 	        System.out.println("3. Delete Deals");
 	        System.out.println("4. Search Deals");
 	        System.out.println("5. Update Deals");
-	       
-	        System.out.println("6. Quit");
+	        
 	    }
 	    
 	    private static void SearchDealMenu() { //David
@@ -305,6 +397,10 @@ public class C206_CaseStudy {
 		for(int i = 0; i < dealList.size(); i++) {
 			if(dealList.get(i).getDealID().equals(dealID) ) {
 				dealList.remove(i);
+				System.out.println("You Have Successfully Deleted Deal: " + dealList.get(i).getDealID());
+				System.out.println("");
+			}else {
+				System.out.println("You have entered an invalid deal id");
 			}
 		}
 	}
@@ -339,12 +435,18 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static void  updateDeal(Deal d, String itemName, String buyerEmail, String sellerEmail, double dealPrice, String closeDate) {
-		d.setItemName(itemName);
-		d.setBuyerEmail(buyerEmail);
-		d.setSellerEmail(sellerEmail);
-		d.setDealPrice(dealPrice);
-		d.setCloseDate(closeDate);
+	public static void  updateDeal(String dealID, String itemName, String buyerEmail, String sellerEmail, double dealPrice, String closeDate) {
+		for(int i = 0; i < dealList.size(); i++) {
+			if(dealList.get(i).getDealID().equals(dealID)) {
+				dealList.get(i).setItemName(itemName);
+				dealList.get(i).setBuyerEmail(buyerEmail);
+				dealList.get(i).setSellerEmail(sellerEmail);
+				dealList.get(i).setDealPrice(dealPrice);
+				dealList.get(i).setCloseDate(closeDate);
+				System.out.println("");
+				System.out.println("You have successfully updated your deal!");
+			}
+		}
 	}
 	
 	public static String feedback(String fdback) {

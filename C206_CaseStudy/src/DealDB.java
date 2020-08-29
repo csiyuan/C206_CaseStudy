@@ -25,6 +25,10 @@ public class DealDB {
 		for(int i = 0; i < dealList.size(); i++) {
 			if(dealList.get(i).getDealID().equals(dealID) ) {
 				dealList.remove(i);
+				System.out.println("You Have Successfully Deleted Deal: " + dealList.get(i).getDealID());
+				System.out.println("");
+			}else {
+				System.out.println("You have entered an invalid deal id");
 			}
 		}
 	}
@@ -59,12 +63,18 @@ public class DealDB {
 		return output;
 	}
 	
-	public static void  updateDeal(Deal d, String itemName, String buyerEmail, String sellerEmail, double dealPrice, String closeDate) {
-		d.setItemName(itemName);
-		d.setBuyerEmail(buyerEmail);
-		d.setSellerEmail(sellerEmail);
-		d.setDealPrice(dealPrice);
-		d.setCloseDate(closeDate);
+	public static void  updateDeal(String dealID, String itemName, String buyerEmail, String sellerEmail, double dealPrice, String closeDate) {
+		for(int i = 0; i < dealList.size(); i++) {
+			if(dealList.get(i).getDealID().equals(dealID)) {
+				dealList.get(i).setItemName(itemName);
+				dealList.get(i).setBuyerEmail(buyerEmail);
+				dealList.get(i).setSellerEmail(sellerEmail);
+				dealList.get(i).setDealPrice(dealPrice);
+				dealList.get(i).setCloseDate(closeDate);
+				System.out.println("");
+				System.out.println("You have successfully updated your deal!");
+			}
+		}
 	}
 	
 	public static String feedback(String fdback) {
