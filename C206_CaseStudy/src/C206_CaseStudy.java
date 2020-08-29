@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 	public static ArrayList<Category> catList = new ArrayList<Category>();
 	public static ArrayList<Deal> dealList = new ArrayList<Deal>();
+	public static ArrayList<Item> itemList=new ArrayList<Item>();
 	 
 	
 	public static void main(String[] args) {
@@ -15,12 +16,16 @@ public class C206_CaseStudy {
 		Category cat3 = new Category ("Stationery");
 		Deal d1 = new Deal("123","TestItem", "testSeller@gmail.com", "testBuyer@gmail.com", 12.0, "12/01/12");
 		Deal d2 = new Deal("321","TestItem2", "testSeller2@gmail.com", "testBuyer2@gmail.com", 13.0, "12/01/12");
+		Item item1= new Item("Lamp", " light weight", 12.50, " 13/07/2020", " 14/08/2020", 0.30);
+		Item item2= new Item("Pen", "Zebra 0.5", 1.80, " 13/07/2020", " 14/08/2020", 0.10);
 		
 		dealList.add(d1);
 		dealList.add(d2);
 		catList.add(cat1);
 		catList.add(cat2);
 		catList.add(cat3);
+		itemList.add(item1);
+		itemList.add(item2);
 		while (option != 4) {
 
 			C206_CaseStudy.menu();
@@ -31,10 +36,22 @@ public class C206_CaseStudy {
 				C206_CaseStudy.viewAllCategory(catList);
 
 			} else if (option == 2) {
+				//Search item by name or description-Anisa
 				C206_CaseStudy.BuyerMenu();
 				buyeroption = Helper.readInt("Enter an option : ");
 				if (buyeroption == 1) {
-					//Search item
+					C206_CaseStudy.SearchItemMenu();
+						int searchOption=Helper.readInt("Enter option: ");
+						if(searchOption==1) {
+							String itemName = Helper.readString("Enter Item Name: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchItem(itemName, ""));
+						}else {
+							String itemDesc = Helper.readString("Enter Item Description: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
+						}
+					}
 				} else if (buyeroption == 2) {
 					String result = Helper.readString("Enter category name: ");
 					for (int i = 0; i < catList.size(); i++) {
@@ -91,16 +108,26 @@ public class C206_CaseStudy {
 							System.out.println("");
 							System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
 						}
-						
-					}
-					
-						
+	
 				} 
 			}else if (option ==3 ) {
 					C206_CaseStudy.SellerMenu();
 					selleroption = Helper.readInt("Enter option: ");
 					if (selleroption == 1) {
-						//Search item
+						//Search item by name or description
+						C206_CaseStudy.SearchItemMenu();
+						int searchOption=Helper.readInt("Enter option: ");
+						if(searchOption==1) {
+							String itemName = Helper.readString("Enter Item Name: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchItem(itemName, ""));
+							
+						}else {
+							String itemDesc = Helper.readString("Enter Item Description: ");
+							System.out.println("");
+							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
+						}
+						
 					} else if (selleroption == 2) {
 						String result = Helper.readString("Enter category name: ");
 						for (int i = 0; i < catList.size(); i++) {
@@ -178,8 +205,19 @@ public class C206_CaseStudy {
 							System.out.println("");
 							System.out.println(C206_CaseStudy.viewAllDeal());
 						}
+					}else if(selleroption==4) { //update item-anisa
 						
+						String name=Helper.readString("Enter item name: ");
+						String desc=Helper.readString("Enter item description: ");
+						double minPrice=Helper.readDouble("Enter minimum price: ");
+						String startDate=Helper.readString("Enter start date: ");
+						String endDate=Helper.readString("Enter end date: ");
+						double bidIncre=Helper.readDouble("Enter bid increment: ");
 						
+						C206_CaseStudy.updateItem(name, desc, minPrice, startDate, endDate, bidIncre);
+						System.out.println("");
+						System.out.println(C206_CaseStudy.viewAllItem());
+						System.out.println("");
 						
 				} else {
 					System.out.println("Invalid option!");
@@ -251,10 +289,8 @@ public class C206_CaseStudy {
 			}
 			}
 		}
-		
 	
-	
-	
+
 	// ----------------------------------- Menu --------------------------------//
 	public static void setHeader(String header) {
 
@@ -286,6 +322,7 @@ public class C206_CaseStudy {
 		System.out.println("1. Search item");
 		System.out.println("2. Search category");
 		System.out.println("3. Manage your deals");
+		System.out.println("4. Update Item");
 	}
 	private static void AdminMenu() {
 
@@ -339,6 +376,13 @@ public class C206_CaseStudy {
 	       
 	        
 	    }
+	    
+	    private static void SearchItemMenu() { //Anisa
+	    	C206_CaseStudy.setHeader("Search Items By: ");
+	    	System.out.println("1. Name");
+	    	System.out.println("2. Description");
+	    }
+	    
 
 	// ----------------------------------- Menu --------------------------------//
 	
@@ -455,5 +499,64 @@ public class C206_CaseStudy {
 	
 	
 	// ----------------------------- Deals ---------------------------------- (David)//
-}
+	// ----------------------------- Anisa ---------------------------------- (Anisa)//
+	public static String viewAllItem() {
+		String output = "";
+		for(int i = 0; i < itemList.size();i++) {
+			 output += itemList.get(i).toString();
+			 
+		}
+		
+		return output;
+	}
+	
+	public static void addItem(Item item ) { 
+		itemList.add(item);
+	}
+	
+	public static void delItem( String item) {
+		for(int i = 0; i < itemList.size(); i++) {
+			if(itemList.get(i).getName().equals(item) ) {
+				itemList.remove(i);
+				System.out.println("You Have Successfully Deleted Item: " + itemList.get(i).getName());
+				System.out.println("");
+			}else {
+				System.out.println("Delete failed");
+			}
+		}
+	}
+	
+	public static  String searchItem(String name, String description) {
+		 
+		String output = "";
+		if(itemList.size() != 0) {
+			for(int i = 0; i < itemList.size(); i++) {
+				if(itemList.get(i).getName().equalsIgnoreCase(name)) {
+					  output += itemList.get(i).toString();
+				}
+				else if(itemList.get(i).getDescription().equalsIgnoreCase(description)) {
+					  output += itemList.get(i).toString();
+					  System.out.println(output);
+				}
+			}
+		}
+		
+		return output;
+	}
+	
+	public static void  updateItem(String itemName, String desc, double minPrice, String startDate, String endDate, double bidIncrement) {
+		for(int i = 0; i < itemList.size(); i++) {
+			itemList.get(i).setName(itemName);
+			itemList.get(i).setDescription(desc);
+			itemList.get(i).setMinPrice(minPrice);
+			itemList.get(i).setStartDate(startDate);
+			itemList.get(i).setEndDate(endDate);
+			itemList.get(i).setBidIncrement(bidIncrement);
+			System.out.println("");
+			System.out.println("You have successfully updated your item!");
+			}
+		}
+	}
+	//----------------------------- Anisa ---------------------------------- (Anisa)//
+
 

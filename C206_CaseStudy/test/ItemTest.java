@@ -8,16 +8,13 @@ public class ItemTest {
 	
 	private Item item1;
 	private Item item2;
-	private Item item3;
-	private Item item4;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		item1=new Item("Lamp", "fast charging", 13.20, "12 January 2020", "1 February 2020", 0.50 );
-		item2=new Item("Portable fan", "light weight", 8.90, "12 January 2020", "1 February 2020",0.50 );
-		item3=new Item("Powerbank", "fast charging", 16.90 , "12 January 2020", "1 February 2020", 1.90);
-		item3=new Item("Portable microphone", "loud and lightweight", 24.60 , "12 January 2020", "1 February 2020", 2.40);
+		item1=new Item("Lamp", " fast charging", 13.20, " 12 January 2020", " 1 February 2020", 0.50 );
+		item2=new Item("Portable fan", " light weight", 8.90, " 12 January 2020", " 1 February 2020",0.50 );
+
 	}
 
 	@After
@@ -47,7 +44,7 @@ public class ItemTest {
 		assertSame("Test item is added", item2, ItemDB.itemList.get(1));
 	}
 	
-	public void retrieveAllItem() {
+	public void retrieveAllItemTest() {
 		//Test if item is not null 
 		assertNotNull("Test if there is item in itemList", ItemDB.itemList);
 		
@@ -68,7 +65,7 @@ public class ItemTest {
 		assertEquals("Test that ViewAllItems", allItems, testOutput);
 	}
 	
-	public void delItem() {
+	public void delItemTest() {
 		//test itemList is not null
 		assertNotNull("Test item is not null", ItemDB.itemList);
 		
@@ -78,10 +75,41 @@ public class ItemTest {
 		assertEquals("Test size of itemList is 2", 2, ItemDB.itemList.size());
 		
 		//test if list has 1 item
-		ItemDB.delItem(item2);
+		ItemDB.delItem(null);
 		assertEquals("Test size is 1 after adding Item", 1, ItemDB.itemList.size());
 		
+	}
+	
+	public void searchItemTest() {
+		//test itemList is not null
+		assertNotNull("Test that itemList is not null", ItemDB.itemList);
 		
+		//test that itemList is not empty
+		ItemDB.addItem(item1);
+		ItemDB.addItem(item2);
+		String output="";
+		assertNotEquals("test that itemList is not empty", item1, ItemDB.itemList);
+		
+		//test item is able to search via name or decription
+		String name=Helper.readString("Enter item name > ");
+		String desc=Helper.readString("Enter item description > ");
+		ItemDB.searchItem(name, desc);
+		assertSame("test that item able to search", item1, ItemDB.itemList.contains(item1));	
+	}
+	
+	public void updateItemTest() {
+		//test that itemList is not null
+		assertNotNull("test that itemList is not null", ItemDB.itemList);
+		
+		//test that itemList is not empty
+		ItemDB.addItem(item1);
+		ItemDB.addItem(item2);
+		assertTrue("Test that itemList is not empty", ItemDB.itemList.isEmpty()==false);
+		
+//		//test that item can be updated
+//		String updateItem=Helper.readString("Enter item name to update > ");
+//		ItemDB.updateItem(updateItem);
+//		assertNotSame("Test that item can be updated", updateItem, ItemDB.itemList);
 	}
 
 }
