@@ -5,9 +5,16 @@ public class User {
 	private String email;
 	private String role;
 	private String password;
+	private int number;
+	private boolean login;
 
-	public User(String name) {
-		this.setName(name);
+	public User(String name, String role, String email, String password) {
+		this.name = name;
+		this.role = role;
+		this.email = email;
+		this.password = password;
+		this.number = 0;
+		this.login = false;
 	}
 
 	public String getName() {
@@ -42,10 +49,30 @@ public class User {
 		this.password = password;
 	}
 
+	public boolean isLogin() {
+		return login;
+	}
+
+	public void setLogin(boolean login) {
+		this.login = login;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", email=" + email + ", role=" + role + ", password=" + password + "]";
+		return "User name: " + name + "\nemail: " + email + "\nrole: " + role + "\npassword: " + password
+				+ "\nlogin: " + login + "\n";
 	}
+
+	
+
 
 	
 	
