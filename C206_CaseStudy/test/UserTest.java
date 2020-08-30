@@ -44,7 +44,7 @@ public class UserTest {
 		//Test if the output is correct
 		UserDB.addUser(user1);
 		String output = UserDB.doViewUser(UserDB.userList);
-		String testoutput = String.format("%-10s %-10s %-10s %s \n", "John", "buyer", "testBuyer@gmail.com", "1234abcd");
+		String testoutput = "User name: " + "John" + "\nemail: " + "testBuyer@gmail.com" + "\nrole: " + "buyer" + "\npassword: " + "1234abcd" + "\nlogin: " + "false" + "\n";
 		assertEquals("Test if it display out the correct output",testoutput, output);
 	}
 		
@@ -121,8 +121,8 @@ public class UserTest {
 		String pass = user1.getPassword();
 		
 		//Test if account user input can login to system
-		String userEmail = "testBuyer@gmail.com";
-		String userPass = "1234abcd";
+		String userEmail = user1.getEmail();
+		String userPass = user1.getPassword();
 		
 		if(email == userEmail) {
 			if(pass == userPass) {

@@ -137,13 +137,16 @@ public class C206_CaseStudy {
 						String buyersEmail = Helper.readString("Enter an email to find: ");
 						
 						User user = null;
+						boolean isAvailable = false;
 						for(int i =0; i < userList.size(); i++) {
-							if(userList.get(i).getEmail() != null && userList.get(i).getEmail().equals(buyersEmail)) {
+							if(buyersEmail.equals(userList.get(i).getEmail())) {
 								String name = Helper.readString("Enter your new name: ");
 								String pass= Helper.readString("Enter your new password: ");
 								if(pass.length() > 8) {
 									user = new User("Buyer", "Buyer", "buyer@gmail.com", "Buyer");
 									C206_CaseStudy.updateUser(user, name, pass);
+									System.out.println("User information updated!");
+									isAvailable = true;
 									break;
 								}
 								else {
@@ -151,14 +154,19 @@ public class C206_CaseStudy {
 									pass= Helper.readString("Enter your new password: ");
 								}
 							}else {
-								System.out.println("No email exist.");
+								isAvailable = false;
 							}
+						}
+						if(isAvailable == false) {
+							System.out.println("No email exist");
 						}
 					}
 					else {
 						System.out.println("Invalid option!");
 						break;
 					}
+					
+					
 				}	
 			}else if (option ==3 ) {
 				//Check login as buyer (SI YUAN)
@@ -337,13 +345,18 @@ public class C206_CaseStudy {
 						} else if(categoryoption == 2) {
 							//Delete category
 							String delCat = Helper.readString("Enter category to delete: ");
+							boolean isAvailable = false;
 							for (int i = 0;i < catList.size(); i++) {
-								if (delCat.equals(catList.get(i).getName())) {
+								if (delCat.equalsIgnoreCase(catList.get(i).getName())) {
+									isAvailable = true;
 									catList.remove(i);
-								} else {
-									System.out.println("No such category exists!");
+									System.out.println("Category deleted!");
 									break;
-								}
+								} 
+								isAvailable = false;
+							}
+							if (isAvailable == false) {
+								System.out.println("Category does not exist!");
 							}
 						} else if(categoryoption == 3) {
 							//Edit category
