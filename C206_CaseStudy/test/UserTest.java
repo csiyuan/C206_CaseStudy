@@ -44,7 +44,7 @@ public class UserTest {
 		//Test if the output is correct
 		UserDB.addUser(user1);
 		String output = UserDB.doViewUser(UserDB.userList);
-		String testoutput = String.format("%-20s %-10s %s \n", "John", "buyer", "testBuyer@gmail.com");
+		String testoutput = String.format("%-10s %-10s %-10s %s \n", "John", "buyer", "testBuyer@gmail.com", "1234abcd");
 		assertEquals("Test if it display out the correct output",testoutput, output);
 	}
 		
@@ -112,10 +112,33 @@ public class UserTest {
 	
 	@Test
 	public void UserLoginTest() {
-		//Test if user account is valid
+		//Test if user account is valid in the user list
 		assertNotNull("Test if user account is valid", UserDB.userList);
 		
-		//
+		//Test if user account is valid in the system by email and password
+		UserDB.addUser(user1);
+		String email = user1.getEmail();
+		String pass = user1.getPassword();
+		
+		//Test if account user input can login to system
+		String userEmail = "testBuyer@gmail.com";
+		String userPass = "1234abcd";
+		
+		if(email == userEmail) {
+			if(pass == userPass) {
+				System.out.println("Successfully logged in as "+ user1.getName());
+			}
+			else {
+				System.out.println("You have keyed in the wrong password. Please try again.");
+			}
+		}
+		else {
+			System.out.println("No valid email is keyed in. Please try again.");
+		}
+		
+		assertEquals("Test if account user input can login to system", userEmail, user1.getEmail());
+		assertEquals("Test if account user input can login to system", userPass, user1.getPassword());
+		
 	}
 	
 	@After

@@ -85,47 +85,47 @@ public class C206_CaseStudy {
 					
 						int buyerChoice = Helper.readInt("Enter an option: ");
 					
-						if(buyerChoice == 1) { //view Deals
-							System.out.println(C206_CaseStudy.viewAllDeal());
-							System.out.println(" ");
-						}
+							if(buyerChoice == 1) { //view Deals
+								System.out.println(C206_CaseStudy.viewAllDeal());
+								System.out.println(" ");
+							}
 					
-						else if(buyerChoice == 2) { //delete deals
+							else if(buyerChoice == 2) { //delete deals
 							String dealIDToDelete = Helper.readString("Enter the deal ID you wish to delete: ");
 							C206_CaseStudy.delDeal(dealIDToDelete);
-						}
-						else { //search deals
-						
-							System.out.println(C206_CaseStudy.viewAllDeal());
-							System.out.println(" ");
-							C206_CaseStudy.SearchDealMenu();
-						
-							int searchByChoice = Helper.readInt("Enter how you want to search by: ");
-							if(searchByChoice == 1) {
-								String itemName = Helper.readString("Enter Item Name: ");
-								System.out.println("");
-								System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
-							
-							}else if(searchByChoice == 2){
-								String buyerEmail = Helper.readString("Enter Buyer Email: ");
-								System.out.println("");
-								System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
-							
-							}else if(searchByChoice == 3){
-								String sellerEmail = Helper.readString("Enter Buyer Email: ");
-								System.out.println("");
-								System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
-							
-							}else if(searchByChoice == 4){
-								double dealPrice = Helper.readDouble("Enter Deal Price: ");
-								System.out.println("");
-								System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
-							}else {
-								String closeDate = Helper.readString("Enter Close Date: ");
-								System.out.println("");
-								System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
 							}
-						}
+							else { //search deals
+						
+								System.out.println(C206_CaseStudy.viewAllDeal());
+								System.out.println(" ");
+								C206_CaseStudy.SearchDealMenu();
+						
+								int searchByChoice = Helper.readInt("Enter how you want to search by: ");
+								if(searchByChoice == 1) {
+									String itemName = Helper.readString("Enter Item Name: ");
+									System.out.println("");
+									System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
+							
+								}else if(searchByChoice == 2){
+									String buyerEmail = Helper.readString("Enter Buyer Email: ");
+									System.out.println("");
+									System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
+							
+								}else if(searchByChoice == 3){
+									String sellerEmail = Helper.readString("Enter Buyer Email: ");
+									System.out.println("");
+									System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
+							
+								}else if(searchByChoice == 4){
+									double dealPrice = Helper.readDouble("Enter Deal Price: ");
+									System.out.println("");
+									System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
+								}else {
+									String closeDate = Helper.readString("Enter Close Date: ");
+									System.out.println("");
+									System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+								}
+							}
 					}else if(buyeroption == 4) {
 						//SEARCH USERS
 						String emailToFind = Helper.readString("Enter an email to find: ");
@@ -154,12 +154,21 @@ public class C206_CaseStudy {
 							else {
 								System.out.println("No email exist.");
 							}
-							}
 						}
+					}
 					else {
-					System.out.println("You have entered your details as a buyer incorrectly");
-				}
+						System.out.println("Invalid option!");
+						break;
+					}
+					
 			}else if (option ==3 ) {
+				//Check login as buyer (SI YUAN)
+				String email = Helper.readString("Enter your Email: ");
+				String password = Helper.readString("Enter your password: ");
+				String output = "You have login successfully";
+				if(C206_CaseStudy.loginUser(email, password) == 2) {
+					System.out.println("Successfully logged in as a SELLER");
+				//AFTER SUCCESSFUL LOGIN AS SELLER (SI YUAN)
 					C206_CaseStudy.SellerMenu();
 					selleroption = Helper.readInt("Enter option: ");
 					if (selleroption == 1) {
@@ -268,127 +277,162 @@ public class C206_CaseStudy {
 						System.out.println(C206_CaseStudy.viewAllItem());
 						System.out.println("");
 						
-				} else {
-					System.out.println("Invalid option!");
-					break;
-				}
-
-			} else if (option == 4) { //Julien
-				C206_CaseStudy.AdminMenu();
-				adminoption = Helper.readInt("Enter an option > ");
-				if (adminoption == 1) {
-					C206_CaseStudy.viewAllCategory(catList);
-					C206_CaseStudy.AdminCategoryMenu();
-					int categoryoption = Helper.readInt("Select option: ");
-					if(categoryoption == 1 ) {
-						//Add category
-						String catName = Helper.readString("Enter category name: ");
-						for (int i = 0; i < catList.size(); i++) {
-							if (catName == catList.get(i).getName()) {
-								System.out.println("Category already exists!");
-								break;
-							} else { 
-								Category cat = new Category(catName);
-								catList.add(cat);
-								System.out.println("Successfully added category!");
-							}
-						}
-					} else if(categoryoption == 2) {
-						//Delete category
-						String delCat = Helper.readString("Enter category to delete: ");
-						for (int i = 0;i < catList.size(); i++) {
-							if (delCat.equalsIgnoreCase(catList.get(i).getName())) {
-								catList.remove(i);
-							} else {
-								System.out.println("No such category exists!");
-								break;
-							}
-						}
-					} else if(categoryoption == 3) {
-						//Edit category
-						String categorySearch = Helper.readString("Enter category to edit: ");
-						for (int i = 0;i < catList.size(); i++) {
-							if (categorySearch.equalsIgnoreCase(catList.get(i).getName())) {
-								String newCatName = Helper.readString("Enter new category name: ");
-								if(newCatName.equalsIgnoreCase(categorySearch)) {
-									System.out.println("Category name cannot be the same!");
+					}else if(selleroption == 5) {
+					// UPDATE SELLER ACCOUNT
+						String sellersEmail = Helper.readString("Enter an email to find: ");
+						
+						User user = null;
+						for(int i =0; i < userList.size(); i++) {
+							if(userList.get(i).getEmail() != null && userList.get(i).getEmail().equals(sellersEmail)) {
+								String name = Helper.readString("Enter your new name: ");
+								String pass= Helper.readString("Enter your new password: ");
+								if(pass.length() > 8) {
+									user = new User("Seller", "Seller", "seller@gmail.com", "Seller");
+									C206_CaseStudy.updateUser(user, name, pass);
 									break;
-								} else {
-									catList.get(i).setName(newCatName);
-									System.out.println("Category name successfully changed!");
 								}
-							} else {
-								System.out.println("No such category exists!");
+								else {
+									System.out.println("Password Must have a Minimum  of 8 Characters");
+									pass= Helper.readString("Enter your new password: ");
+								}
+							}
+							else {
+								System.out.println("No email exist.");
 							}
 						}
-					} else {
-						System.out.println("Invalid Option!");
+					}else {
+						System.out.println("Invalid option!");
 						break;
 					}
-				} else if(adminoption == 2) {
-					
-					//manage admin users (SI YUAN)
-					if(adminUserChoice == 1) {
-						//SEARCH USER
-						String emailToFind = Helper.readString("Enter an email to find: ");
-						C206_CaseStudy.searchUser(emailToFind);
-					}else if(adminUserChoice == 2) {
-						//VIEW USERS
-						C206_CaseStudy.viewUser();
-					}
-				} else if (adminoption == 3) {
-					//manage ADMIN deals - David
-					 C206_CaseStudy.AdminDealMenu();
-					int adminChoice = Helper.readInt("Enter Your choice: ");
-					
-					if(adminChoice == 1) { //View Deals
-						System.out.println(C206_CaseStudy.viewAllDeal());
-						System.out.println(" ");
-						
-					}else if(adminChoice == 2){ //Delete Deal
-						String dealIDToDelete = Helper.readString("Enter the Deal ID You would like to delete: ");
-						C206_CaseStudy.delDeal(dealIDToDelete);
-					}else {//Search Deals
-						System.out.println(C206_CaseStudy.viewAllDeal());
-						System.out.println(" ");
-						C206_CaseStudy.SearchDealMenu();
-						
-						int searchByChoice = Helper.readInt("Enter how you want to search by: ");
-						if(searchByChoice == 1) {
-							String itemName = Helper.readString("Enter Item Name: ");
-							System.out.println("");
-							System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
-							
-						}else if(searchByChoice == 2){
-							String buyerEmail = Helper.readString("Enter Buyer Email: ");
-							System.out.println("");
-							System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
-							
-						}else if(searchByChoice == 3){
-							String sellerEmail = Helper.readString("Enter Buyer Email: ");
-							System.out.println("");
-							System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
-							
-						}else if(searchByChoice == 4){
-							double dealPrice = Helper.readDouble("Enter Deal Price: ");
-							System.out.println("");
-							System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
-						}else {
-							String closeDate = Helper.readString("Enter Close Date: ");
-							System.out.println("");
-							System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+
+			} else if (option == 4) { 
+				//Check login as ADMIN (SI YUAN)
+				email = Helper.readString("Enter your Email: ");
+				password = Helper.readString("Enter your password: ");
+				output = "You have login successfully";
+				if(C206_CaseStudy.loginUser(email, password) == 3) {
+					System.out.println("Successfully logged in as a ADMIN");
+				//AFTER SUCCESSFUL LOGIN AS ADMIN (SI YUAN)
+				//Julien
+					C206_CaseStudy.AdminMenu();
+					adminoption = Helper.readInt("Enter an option > ");
+					if (adminoption == 1) {
+						C206_CaseStudy.viewAllCategory(catList);
+						C206_CaseStudy.AdminCategoryMenu();
+						int categoryoption = Helper.readInt("Select option: ");
+						if(categoryoption == 1 ) {
+							//Add category
+							String catName = Helper.readString("Enter category name: ");
+							for (int i = 0; i < catList.size(); i++) {
+								if (catName == catList.get(i).getName()) {
+									System.out.println("Category already exists!");
+									break;
+								} else { 
+									Category cat = new Category(catName);
+									catList.add(cat);
+									System.out.println("Successfully added category!");
+								}
+							}
+						} else if(categoryoption == 2) {
+							//Delete category
+							String delCat = Helper.readString("Enter category to delete: ");
+							for (int i = 0;i < catList.size(); i++) {
+								if (delCat.equalsIgnoreCase(catList.get(i).getName())) {
+									catList.remove(i);
+								} else {
+									System.out.println("No such category exists!");
+									break;
+								}
+							}
+						} else if(categoryoption == 3) {
+							//Edit category
+							String categorySearch = Helper.readString("Enter category to edit: ");
+							for (int i = 0;i < catList.size(); i++) {
+								if (categorySearch.equalsIgnoreCase(catList.get(i).getName())) {
+									String newCatName = Helper.readString("Enter new category name: ");
+									if(newCatName.equalsIgnoreCase(categorySearch)) {
+										System.out.println("Category name cannot be the same!");
+										break;
+									} else {
+										catList.get(i).setName(newCatName);
+										System.out.println("Category name successfully changed!");
+									}
+								} else {
+									System.out.println("No such category exists!");
+								}
+							}
+						} else {
+							System.out.println("Invalid Option!");
+							break;
 						}
-					}
+					} else if(adminoption == 2) {
 					
+						//manage admin users (SI YUAN)
+						if(adminUserChoice == 1) {
+							//SEARCH USER
+							String emailToFind = Helper.readString("Enter an email to find: ");
+							C206_CaseStudy.searchUser(emailToFind);
+						}else if(adminUserChoice == 2) {
+							//VIEW USERS
+							C206_CaseStudy.viewUser();
+						}
+					} else if (adminoption == 3) {
+						//manage ADMIN deals - David
+						C206_CaseStudy.AdminDealMenu();
+						int adminChoice = Helper.readInt("Enter Your choice: ");
+					
+						if(adminChoice == 1) { //View Deals
+							System.out.println(C206_CaseStudy.viewAllDeal());
+							System.out.println(" ");
+						
+						}else if(adminChoice == 2){ //Delete Deal
+							String dealIDToDelete = Helper.readString("Enter the Deal ID You would like to delete: ");
+							C206_CaseStudy.delDeal(dealIDToDelete);
+						}else {//Search Deals
+							System.out.println(C206_CaseStudy.viewAllDeal());
+							System.out.println(" ");
+							C206_CaseStudy.SearchDealMenu();
+						
+							int searchByChoice = Helper.readInt("Enter how you want to search by: ");
+							if(searchByChoice == 1) {
+								String itemName = Helper.readString("Enter Item Name: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal(itemName, "", "", 0, ""));
+							
+							}else if(searchByChoice == 2){
+								String buyerEmail = Helper.readString("Enter Buyer Email: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", buyerEmail, "", 0, ""));
+							
+							}else if(searchByChoice == 3){
+								String sellerEmail = Helper.readString("Enter Buyer Email: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", sellerEmail, 0, ""));
+							
+							}else if(searchByChoice == 4){
+								double dealPrice = Helper.readDouble("Enter Deal Price: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", "", dealPrice, ""));
+							}else {
+								String closeDate = Helper.readString("Enter Close Date: ");
+								System.out.println("");
+								System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
+							}
+						}
+					
+					}
+
+				}
+			}else if (option == 5){
+					System.out.println("Thank you for visiting the shop!");
+					break;
+				} else {
+					System.out.println("Invalid option");
 				}
 
-			} else if (option == 5){
-				System.out.println("Thank you for visiting the shop!");
-				break;
-			} else {
-				System.out.println("Invalid option");
 			}
 		}
+
 	}
 	
 

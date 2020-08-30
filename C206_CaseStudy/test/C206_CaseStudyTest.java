@@ -255,8 +255,33 @@ public class C206_CaseStudyTest {
 				
 				@Test
 				public void UserLoginTest() {
-					//Test if user account is valid
+					//Test if user account is valid in the user list
 					assertNotNull("Test if user account is valid", UserDB.userList);
+					
+					//Test if user account is valid in the system by email and password
+					UserDB.addUser(user1);
+					String email = user1.getEmail();
+					String pass = user1.getPassword();
+					
+					//Test if account user input can login to system
+					String userEmail = Helper.readString("Enter User email: ");
+					String userPass = Helper.readString("Enter User Password: ");
+					
+					if(email == userEmail) {
+						if(pass == userPass) {
+							System.out.println("Successfully logged in as "+ user1.getName());
+						}
+						else {
+							System.out.println("You have keyed in the wrong password. Please try again.");
+						}
+					}
+					else {
+						System.out.println("No valid email is keyed in. Please try again.");
+					}
+					
+					assertEquals("Test if account user input can login to system", userEmail, user1.getEmail());
+					assertEquals("Test if account user input can login to system", userPass, user1.getPassword());
+					
 				}
 
 

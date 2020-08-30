@@ -32,8 +32,8 @@ public class UserDB {
 	public static void viewUser() {
 		
 		String output = "";
-		output += String.format("%-20s %-10s %s \n", 
-				"Name", "Role", "Email");
+		output += String.format("%-10s %-10s %-10s %s \n", 
+				"Name", "Role", "Email", "Password");
 		output += doViewUser(userList);
 		
 		System.out.println(output);
