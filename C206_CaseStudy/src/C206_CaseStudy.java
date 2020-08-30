@@ -333,13 +333,14 @@ public class C206_CaseStudy {
 									Category cat = new Category(catName);
 									catList.add(cat);
 									System.out.println("Successfully added category!");
+									break;
 								}
 							}
 						} else if(categoryoption == 2) {
 							//Delete category
 							String delCat = Helper.readString("Enter category to delete: ");
 							for (int i = 0;i < catList.size(); i++) {
-								if (delCat.equalsIgnoreCase(catList.get(i).getName())) {
+								if (delCat.equals(catList.get(i).getName())) {
 									catList.remove(i);
 								} else {
 									System.out.println("No such category exists!");
