@@ -24,11 +24,11 @@ public class CategoryDB {
 	public static void deleteCategory(Category c) {
 		if (catList.size() !=0) {
 			catList.remove(c);
+		} else {
+			System.out.println("Category list is empty!");
 		}
 	}
-	
-	public static void updateCategory(Category c) {
-		
+	public static void updateCategory(int pos,Category c) {
+		catList.set(pos, c);
 	}
-	
 }

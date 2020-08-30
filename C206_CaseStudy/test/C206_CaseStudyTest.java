@@ -7,6 +7,7 @@ import org.junit.Test;
 public class C206_CaseStudyTest {
 	private Deal d1, d2;
 	private User user1, user2;
+	private Category cat1,cat2;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -14,6 +15,8 @@ public class C206_CaseStudyTest {
 		d2 = new Deal("321","TestItem2", "testSeller2@gmail.com", "testBuyer2@gmail.com", 13.0, "12/01/12");
 		user1 = new User("John", "buyer", "testBuyer@gmail.com", "1234abcd");
 		user2 = new User("Jack", "Admin", "admin@gmail.com", "Admin");
+		cat1 = new Category("Books");
+		cat2 = new Category("Electronics");
 	}
 
 	@After
@@ -24,6 +27,8 @@ public class C206_CaseStudyTest {
 		user1 = null;
 		user2 = null;
 		UserDB.userList.clear();
+		cat1 = null;
+		CategoryDB.catList.clear();
 	}
 
 	@Test
@@ -152,6 +157,7 @@ public class C206_CaseStudyTest {
 			}
 //===============================================DEALS=========================================================================//			
 
+			
 // ==============================================USERS ========================================================================(SI YUAN)//
 			
 				@Test
@@ -252,11 +258,71 @@ public class C206_CaseStudyTest {
 					//Test if user account is valid
 					assertNotNull("Test if user account is valid", UserDB.userList);
 				}
-}
+
 
 //==============================================USERS ========================================================================(SI YUAN)//
 		
-		
+
+				
+//==========================================================Category==========================================================(Julien)//
+				@Test
+				public void addCategoryTest() {
+					//Test that catList is NOT null 
+					assertNotNull("Test that catList is NOT null", CategoryDB.catList);
+
+					//Test that the size of catList is 1 after adding a category
+					CategoryDB.addCategory(cat1);
+					assertEquals("Test that the size of catList is 1 after adding a category",1, CategoryDB.catList.size());
+					
+					//Test that the first element in catList is the same as what was added.
+					assertSame("Test that the first element in catList is the same as what was added.", cat1, CategoryDB.catList.get(0));
+				
+				}
+
+				@Test
+				public void viewCategoryTest() {
+					//Test that catList is not null but empty
+					assertNotNull("Test that catList is not null but empty", CategoryDB.catList);
+					
+					//Test that the size of catList is 0 before viewing categories
+					assertEquals("Test that the size of catList is 0 before viewing any categories", 0, CategoryDB.catList.size());
+				
+					
+					//Test that the expected output string is the same as the list of category retrieved 
+					String allCategory = CategoryDB.viewAllCategory(CategoryDB.catList);
+					String testOutput = "";
+					assertEquals("Test that the size of catList is 1 after viewing categories", testOutput, allCategory);
+
+				}
+				@Test
+				public void deleteCategoryTest() {
+					//Test if there is a valid category to delete from
+					assertNotNull("Test if there is a valid category to delete from", CategoryDB.catList);
+					
+					//Test if the category is not null
+					CategoryDB.addCategory(cat1);
+					CategoryDB.addCategory(cat2);
+					assertEquals("Test if the category is not null",2, CategoryDB.catList.size());
+
+					//Test if the list has only one item after deleting
+					CategoryDB.deleteCategory(cat1);
+					assertEquals("Test if the list has only one item after deleting", 1, CategoryDB.catList.size());
+				}
+				@Test
+				public void updateCategoryTest() {
+					//Test if there is a valid category to update
+					assertNotNull("Test if there is a valid category to update", CategoryDB.catList);
+					
+					//Test if administrator can update category details
+					CategoryDB.addCategory(cat1);
+					String catname = "E-books";
+					String name = "Category name:" + catname;
+					cat1.setName(catname);
+					assertEquals("Test if admin can update category details", name, CategoryDB.catList.get(0).toString());
+				}
+//==========================================================Category==========================================================(Julien)//
+
+}		
 	
 
 

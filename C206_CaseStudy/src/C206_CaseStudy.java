@@ -273,15 +273,58 @@ public class C206_CaseStudy {
 					break;
 				}
 
-			} else if (option == 4) {
+			} else if (option == 4) { //Julien
 				C206_CaseStudy.AdminMenu();
 				adminoption = Helper.readInt("Enter an option > ");
 				if (adminoption == 1) {
-					System.out.println("Category List");
-					for (int i = 0; i < catList.size(); i++) {
-						C206_CaseStudy.viewAllCategory(catList);
+					C206_CaseStudy.viewAllCategory(catList);
+					C206_CaseStudy.AdminCategoryMenu();
+					int categoryoption = Helper.readInt("Select option: ");
+					if(categoryoption == 1 ) {
+						//Add category
+						String catName = Helper.readString("Enter category name: ");
+						for (int i = 0; i < catList.size(); i++) {
+							if (catName == catList.get(i).getName()) {
+								System.out.println("Category already exists!");
+								break;
+							} else { 
+								Category cat = new Category(catName);
+								catList.add(cat);
+								System.out.println("Successfully added category!");
+							}
+						}
+					} else if(categoryoption == 2) {
+						//Delete category
+						String delCat = Helper.readString("Enter category to delete: ");
+						for (int i = 0;i < catList.size(); i++) {
+							if (delCat.equalsIgnoreCase(catList.get(i).getName())) {
+								catList.remove(i);
+							} else {
+								System.out.println("No such category exists!");
+								break;
+							}
+						}
+					} else if(categoryoption == 3) {
+						//Edit category
+						String categorySearch = Helper.readString("Enter category to edit: ");
+						for (int i = 0;i < catList.size(); i++) {
+							if (categorySearch.equalsIgnoreCase(catList.get(i).getName())) {
+								String newCatName = Helper.readString("Enter new category name: ");
+								if(newCatName.equalsIgnoreCase(categorySearch)) {
+									System.out.println("Category name cannot be the same!");
+									break;
+								} else {
+									catList.get(i).setName(newCatName);
+									System.out.println("Category name successfully changed!");
+								}
+							} else {
+								System.out.println("No such category exists!");
+							}
+						}
+					} else {
+						System.out.println("Invalid Option!");
+						break;
 					}
-					int categoryoption = Helper.readInt("Select category number...");
 				} else if(adminoption == 2) {
 					
 					//manage admin users (SI YUAN)
@@ -357,7 +400,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 	
-	public static void menu() {
+	public static void menu() { //Julien
 		System.out.println("Campus Online Auction Shop");
 		System.out.println("1. View all categories");
 		System.out.println("2. Login as buyer");
@@ -367,7 +410,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 
 	}
-	private static void BuyerMenu() {
+	private static void BuyerMenu() { //Julien
 
 		C206_CaseStudy.setHeader("Buyer's Home Page");
 		System.out.println("1. Search item");
@@ -377,7 +420,7 @@ public class C206_CaseStudy {
 		System.out.println("5. Update your account");
 		System.out.println("You will be logged out after making an action");
 	}
-	private static void SellerMenu() {
+	private static void SellerMenu() { //Julien
 
 		C206_CaseStudy.setHeader("Seller's Home Page");
 		System.out.println("1. Search item");
@@ -387,7 +430,7 @@ public class C206_CaseStudy {
 		System.out.println("5. Update your account");
 		System.out.println("You will be logged out after making an action");
 	}
-	private static void AdminMenu() {
+	private static void AdminMenu() { //Julien
 
 		C206_CaseStudy.setHeader("Admin Home Page");
 		System.out.println("1. Manage categories");
@@ -395,6 +438,13 @@ public class C206_CaseStudy {
 		System.out.println("3. Manage deals");
 		System.out.println("4. Quit");
 		System.out.println("You will be logged out after making an action");
+	}
+	
+	private static void AdminCategoryMenu() { //Julien
+		C206_CaseStudy.setHeader("Category options");
+		System.out.println("1. Add Category");
+		System.out.println("2. Delete Category");
+		System.out.println("3. Edit Category");
 	}
 	
 	 private static void AdminDealMenu() { //David
