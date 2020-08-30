@@ -133,5 +133,21 @@ public class DealTest {
 	 
 		
 	}
+	
+	public void feedbackTest() {
+		 //Testing dealList is not null
+		assertNotNull("Test that dealList is NOT null so items can be retrieved", DealDB.dealList);
+			
+		//test if the list of Deals retrieved is empty - boundary
+		String allDeals= DealDB.viewAllDeal();
+				
+		assertEquals("Test that the size of userList is 0 before showing any Deals", 0, DealDB.dealList.size());
+		
+		// test that feedback is displayed
+		DealDB.feedback("testSeller@gmail.com", "Good", 1);
+	 
+		
+	}
+	
 
 }

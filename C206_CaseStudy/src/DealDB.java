@@ -80,9 +80,21 @@ public class DealDB {
 		}
 	}
 	
-	public static String feedback(String fdback) {
-		return fdback;
+	public static String feedback(String sellerEmail, String feedback, int rating) {
+		String output = "";
+		for(int i = 0; i < dealList.size(); i++) {
+			if(dealList.get(i).getSellerEmail().equals(sellerEmail)){
+				output+= "FeedBack: " + feedback + "\nRating: " + rating;
+				
+				 
+			} 
+			
+		}
+		return output;
+		
 	}
+	
+	
 	
 	
 		

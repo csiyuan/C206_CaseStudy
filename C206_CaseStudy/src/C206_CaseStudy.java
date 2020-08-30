@@ -94,7 +94,7 @@ public class C206_CaseStudy {
 							String dealIDToDelete = Helper.readString("Enter the deal ID you wish to delete: ");
 							C206_CaseStudy.delDeal(dealIDToDelete);
 							}
-							else { //search deals
+							else if(buyerChoice == 3){ //search deals
 						
 								System.out.println(C206_CaseStudy.viewAllDeal());
 								System.out.println(" ");
@@ -125,6 +125,16 @@ public class C206_CaseStudy {
 									System.out.println("");
 									System.out.println(C206_CaseStudy.searchDeal("", "", "",0 , closeDate));
 								}
+							}else { //provide feedback 
+								String feedback = Helper.readString("Enter feedback: " );
+								int rating = Helper.readInt("Enter Rating (Worst)1 - 5(Best): ");
+								String sellerEmail = Helper.readString("Enter the seller email who you want to provide feedback and rating to: ");
+								
+								  System.out.println(C206_CaseStudy.feedback(sellerEmail, feedback, rating));
+								
+							 
+								
+								
 							}
 					}else if(buyeroption == 4) {
 						//SEARCH USERS
@@ -217,6 +227,8 @@ public class C206_CaseStudy {
 							double dealPrice = Helper.readDouble("Enter Deal Price: ");
 							String date = Helper.readString("Enter Close Date: ");
 							Deal Deal = new Deal(dealID ,itemName, buyerEmail, sellerEmail, dealPrice, date);
+							
+							
 							
 							C206_CaseStudy.addDeal(Deal);
 						}else if(sellerChoice == 2){ //view deals
@@ -515,6 +527,7 @@ public class C206_CaseStudy {
 	        System.out.println("1. View Deals");
 	        System.out.println("2. Delete Deals");
 	        System.out.println("3. Search Deals");
+	         
 	        System.out.println("You will be logged out after making an action");
 	    
 	       
@@ -527,6 +540,7 @@ public class C206_CaseStudy {
 	        System.out.println("1. View Deals");
 	        System.out.println("2. Delete Deals");
 	        System.out.println("3. Search Deals");
+	        System.out.println("4. Provide feedback");
 	        System.out.println("You will be logged out after making an action");
 	        
 	       
@@ -681,8 +695,18 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static String feedback(String fdback) {
-		return fdback;
+	public static String feedback(String sellerEmail, String feedback, int rating) {
+		String output = "";
+		for(int i = 0; i < dealList.size(); i++) {
+			if(dealList.get(i).getSellerEmail().equals(sellerEmail)){
+				output+= "FeedBack: " + feedback + "\nRating: " + rating;
+				
+				 
+			} 
+			
+		}
+		return output;
+		
 	}
 	
 	
