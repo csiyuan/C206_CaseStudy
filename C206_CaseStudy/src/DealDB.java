@@ -5,10 +5,13 @@ public class DealDB {
 	public static ArrayList<Deal> dealList = new ArrayList<Deal>();
 	
 	
+	
 	public static void addDeal(Deal d ) {
 		 
 		 
 		dealList.add(d);
+		System.out.println("You have successfully added a deal.");
+		System.out.println("");
 	}
 	
 	public static String viewAllDeal() {
@@ -24,9 +27,9 @@ public class DealDB {
 	public static void delDeal( String dealID) {
 		for(int i = 0; i < dealList.size(); i++) {
 			if(dealList.get(i).getDealID().equals(dealID) ) {
-				dealList.remove(i);
 				System.out.println("You Have Successfully Deleted Deal: " + dealList.get(i).getDealID());
 				System.out.println("");
+				dealList.remove(i);	
 			}else {
 				System.out.println("You have entered an invalid deal id");
 			}
@@ -80,6 +83,8 @@ public class DealDB {
 	public static String feedback(String fdback) {
 		return fdback;
 	}
+	
+	
 		
 	
  

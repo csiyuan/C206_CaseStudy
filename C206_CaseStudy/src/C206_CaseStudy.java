@@ -35,7 +35,7 @@ public class C206_CaseStudy {
 		userList.add(user2);
 		userList.add(user3);
 		
-		while (option != 4) {
+		while (option != 5) {
 
 			C206_CaseStudy.menu();
 			 
@@ -46,13 +46,13 @@ public class C206_CaseStudy {
 
 			} else if (option == 2) {
 				//Check login as buyer (SI YUAN)
-				
 				String email = Helper.readString("Enter your Email: ");
 				String password = Helper.readString("Enter your password: ");
 				String output = "You have login successfully";
 				if(C206_CaseStudy.loginUser(email, password) == 1) {
 					System.out.println("Successfully logged in as a BUYER");
 				//AFTER SUCCESSFUL LOGIN AS BUYER (SI YUAN)
+					
 					C206_CaseStudy.BuyerMenu();
 					buyeroption = Helper.readInt("Enter an option : ");
 					if (buyeroption == 1) {
@@ -66,9 +66,9 @@ public class C206_CaseStudy {
 						}else {
 							String itemDesc = Helper.readString("Enter Item Description: ");
 							System.out.println("");
-							System.out.println(C206_CaseStudy.searchItem("", itemDesc));
+							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
 						}
-					}
+					
 					} else if (buyeroption == 2) {
 						String result = Helper.readString("Enter category name: ");
 						for (int i = 0; i < catList.size(); i++) {
@@ -128,6 +128,7 @@ public class C206_CaseStudy {
 							}
 					}else if(buyeroption == 4) {
 						//SEARCH USERS
+						System.out.println("Testing");
 						String emailToFind = Helper.readString("Enter an email to find: ");
 						C206_CaseStudy.searchUser(emailToFind);
 						
@@ -160,7 +161,7 @@ public class C206_CaseStudy {
 						System.out.println("Invalid option!");
 						break;
 					}
-					
+				}	
 			}else if (option ==3 ) {
 				//Check login as buyer (SI YUAN)
 				String email = Helper.readString("Enter your Email: ");
@@ -172,20 +173,18 @@ public class C206_CaseStudy {
 					C206_CaseStudy.SellerMenu();
 					selleroption = Helper.readInt("Enter option: ");
 					if (selleroption == 1) {
-						//Search item by name or description-Anisa
+						//Search item by name or description
 						C206_CaseStudy.SearchItemMenu();
 						int searchOption=Helper.readInt("Enter option: ");
 						if(searchOption==1) {
 							String itemName = Helper.readString("Enter Item Name: ");
 							System.out.println("");
 							System.out.println(C206_CaseStudy.searchItem(itemName, ""));
-							break;
 							
 						}else {
 							String itemDesc = Helper.readString("Enter Item Description: ");
 							System.out.println("");
-							System.out.println(C206_CaseStudy.searchItem("", itemDesc));
-							break;
+							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
 						}
 						
 					} else if (selleroption == 2) {
@@ -277,6 +276,7 @@ public class C206_CaseStudy {
 						C206_CaseStudy.updateItem(name, desc, minPrice, startDate, endDate, bidIncre);
 						System.out.println("");
 						System.out.println(C206_CaseStudy.viewAllItem());
+						System.out.println("");
 						
 					}else if(selleroption == 5) {
 					// UPDATE SELLER ACCOUNT
@@ -306,11 +306,12 @@ public class C206_CaseStudy {
 						break;
 					}
 
-			} else if (option == 4) { 
+				} 
+			}else if (option == 4) { 
 				//Check login as ADMIN (SI YUAN)
-				email = Helper.readString("Enter your Email: ");
-				password = Helper.readString("Enter your password: ");
-				output = "You have login successfully";
+				String email = Helper.readString("Enter your Email: ");
+				String password = Helper.readString("Enter your password: ");
+				String output = "You have login successfully";
 				if(C206_CaseStudy.loginUser(email, password) == 3) {
 					System.out.println("Successfully logged in as a ADMIN");
 				//AFTER SUCCESSFUL LOGIN AS ADMIN (SI YUAN)
@@ -425,15 +426,12 @@ public class C206_CaseStudy {
 
 				}
 			}else if (option == 5){
-					System.out.println("Thank you for visiting the shop!");
 					break;
-				} else {
-					System.out.println("Invalid option");
-				}
-
+			} else {
+				System.out.println("Invalid option");
 			}
-		}
-
+		} 
+		System.out.println("Thank you for visiting the shop!");
 	}
 	
 
@@ -594,6 +592,8 @@ public class C206_CaseStudy {
 		 
 		 
 		dealList.add(d);
+		System.out.println("You have successfully added a deal.");
+		System.out.println("");
 	}
 	
 	public static String viewAllDeal() {
@@ -609,9 +609,9 @@ public class C206_CaseStudy {
 	public static void delDeal( String dealID) {
 		for(int i = 0; i < dealList.size(); i++) {
 			if(dealList.get(i).getDealID().equals(dealID) ) {
-				dealList.remove(i);
 				System.out.println("You Have Successfully Deleted Deal: " + dealList.get(i).getDealID());
 				System.out.println("");
+				dealList.remove(i);	
 			}else {
 				System.out.println("You have entered an invalid deal id");
 			}
@@ -722,9 +722,8 @@ public class C206_CaseStudy {
 			itemList.get(i).setEndDate(endDate);
 			itemList.get(i).setBidIncrement(bidIncrement);
 			System.out.println("");
-			
+			System.out.println("You have successfully updated your item!");
 			}
-		System.out.println("You have successfully updated your item!");
 		}
 	//----------------------------- Item ---------------------------------- (Anisa)//
 //----------------------------- Users ---------------------------------- (Si Yuan)//
@@ -891,5 +890,4 @@ public class C206_CaseStudy {
 		}
 	}
 	// ----------------------------- Users ---------------------------------- (Si Yuan)//
-
 
