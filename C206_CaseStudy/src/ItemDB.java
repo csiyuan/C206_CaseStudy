@@ -81,7 +81,8 @@ public class ItemDB {
 			itemList.get(i).setEndDate(endDate);
 			itemList.get(i).setBidIncrement(bidIncrement);
 			System.out.println("");
-			System.out.println("You have successfully updated your item!");
+			
 			}
+		System.out.println("You have successfully updated your item!");
 		}
 	}

@@ -106,10 +106,8 @@ public class ItemTest {
 		ItemDB.addItem(item2);
 		assertTrue("Test that itemList is not empty", ItemDB.itemList.isEmpty()==false);
 		
-//		//test that item can be updated
-//		String updateItem=Helper.readString("Enter item name to update > ");
-//		ItemDB.updateItem(updateItem);
-//		assertNotSame("Test that item can be updated", updateItem, ItemDB.itemList);
+		//test that item can be updated
+		ItemDB.updateItem("Pen", "Zebra 0.5", 1.80, " 13/07/2020", " 14/08/2020", 0.10);
 	}
 
 }

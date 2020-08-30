@@ -66,7 +66,7 @@ public class C206_CaseStudy {
 						}else {
 							String itemDesc = Helper.readString("Enter Item Description: ");
 							System.out.println("");
-							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
+							System.out.println(C206_CaseStudy.searchItem("", itemDesc));
 						}
 					}
 					} else if (buyeroption == 2) {
@@ -172,7 +172,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.SellerMenu();
 					selleroption = Helper.readInt("Enter option: ");
 					if (selleroption == 1) {
-						//Search item by name or description
+						//Search item by name or description-Anisa
 						C206_CaseStudy.SearchItemMenu();
 						int searchOption=Helper.readInt("Enter option: ");
 						if(searchOption==1) {
@@ -183,7 +183,7 @@ public class C206_CaseStudy {
 						}else {
 							String itemDesc = Helper.readString("Enter Item Description: ");
 							System.out.println("");
-							System.out.println(C206_CaseStudy.searchItem(itemDesc, ""));
+							System.out.println(C206_CaseStudy.searchItem("", itemDesc));
 						}
 						
 					} else if (selleroption == 2) {
@@ -276,6 +276,7 @@ public class C206_CaseStudy {
 						System.out.println("");
 						System.out.println(C206_CaseStudy.viewAllItem());
 						System.out.println("");
+						
 						
 					}else if(selleroption == 5) {
 					// UPDATE SELLER ACCOUNT

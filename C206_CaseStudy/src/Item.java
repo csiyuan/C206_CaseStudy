@@ -70,7 +70,9 @@ public class Item {
 
 	@Override
 	public String toString() {
-		 return "Item:" + name + description + minPrice + startDate + endDate + bidIncrement;
+		 return "Item: " + name + "\nDescription: " + description   
+					+ "\nMinimum Price: $" + minPrice + "\nStart Date: "
+					+ startDate + "\nEnd Date: " + endDate + "\nBid Increment: $" + bidIncrement +"\n\n" ;
 	}
 	
 
