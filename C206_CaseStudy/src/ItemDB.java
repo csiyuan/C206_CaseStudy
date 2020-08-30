@@ -57,10 +57,10 @@ public class ItemDB {
 		String output = "";
 		if(itemList.size() != 0) {
 			for(int i = 0; i < itemList.size(); i++) {
-				if(itemList.get(i).getName().equals(name)) {
+				if(itemList.get(i).getName().equalsIgnoreCase(name)) {
 					  output += itemList.get(i).toString();
 				}
-				else if(itemList.get(i).getDescription().equals(description)) {
+				else if(itemList.get(i).getDescription().contains(description)) {
 					  output += itemList.get(i).toString();
 				}
 				else {
@@ -81,7 +81,6 @@ public class ItemDB {
 			itemList.get(i).setEndDate(endDate);
 			itemList.get(i).setBidIncrement(bidIncrement);
 			System.out.println("");
-			
 			}
 		System.out.println("You have successfully updated your item!");
 		}

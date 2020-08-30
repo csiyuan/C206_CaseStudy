@@ -179,11 +179,13 @@ public class C206_CaseStudy {
 							String itemName = Helper.readString("Enter Item Name: ");
 							System.out.println("");
 							System.out.println(C206_CaseStudy.searchItem(itemName, ""));
+							break;
 							
 						}else {
 							String itemDesc = Helper.readString("Enter Item Description: ");
 							System.out.println("");
 							System.out.println(C206_CaseStudy.searchItem("", itemDesc));
+							break;
 						}
 						
 					} else if (selleroption == 2) {
@@ -275,8 +277,6 @@ public class C206_CaseStudy {
 						C206_CaseStudy.updateItem(name, desc, minPrice, startDate, endDate, bidIncre);
 						System.out.println("");
 						System.out.println(C206_CaseStudy.viewAllItem());
-						System.out.println("");
-						
 						
 					}else if(selleroption == 5) {
 					// UPDATE SELLER ACCOUNT
@@ -703,9 +703,9 @@ public class C206_CaseStudy {
 				if(itemList.get(i).getName().equalsIgnoreCase(name)) {
 					  output += itemList.get(i).toString();
 				}
-				else if(itemList.get(i).getDescription().equalsIgnoreCase(description)) {
+				else if(itemList.get(i).getDescription().contains(description)) {
 					  output += itemList.get(i).toString();
-					  System.out.println(output);
+					 
 				}
 			}
 		}
@@ -722,8 +722,9 @@ public class C206_CaseStudy {
 			itemList.get(i).setEndDate(endDate);
 			itemList.get(i).setBidIncrement(bidIncrement);
 			System.out.println("");
-			System.out.println("You have successfully updated your item!");
+			
 			}
+		System.out.println("You have successfully updated your item!");
 		}
 	//----------------------------- Item ---------------------------------- (Anisa)//
 //----------------------------- Users ---------------------------------- (Si Yuan)//
