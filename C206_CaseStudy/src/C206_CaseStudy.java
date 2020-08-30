@@ -360,20 +360,27 @@ public class C206_CaseStudy {
 							}
 						} else if(categoryoption == 3) {
 							//Edit category
+							boolean isAvailable = false;
 							String categorySearch = Helper.readString("Enter category to edit: ");
 							for (int i = 0;i < catList.size(); i++) {
 								if (categorySearch.equalsIgnoreCase(catList.get(i).getName())) {
 									String newCatName = Helper.readString("Enter new category name: ");
 									if(newCatName.equalsIgnoreCase(categorySearch)) {
+										isAvailable = true;
 										System.out.println("Category name cannot be the same!");
 										break;
 									} else {
+										isAvailable = true;
 										catList.get(i).setName(newCatName);
 										System.out.println("Category name successfully changed!");
+										break;
 									}
 								} else {
-									System.out.println("No such category exists!");
+									isAvailable = false;
 								}
+							}
+							if(isAvailable == false) {
+								System.out.println("No such category exists!");
 							}
 						} else {
 							System.out.println("Invalid Option!");

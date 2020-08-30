@@ -192,7 +192,7 @@ public class C206_CaseStudyTest {
 					//Test if the output is correct
 					UserDB.addUser(user1);
 					String output = UserDB.doViewUser(UserDB.userList);
-					String testoutput = String.format("%-20s %-10s %s \n", "John", "buyer", "testBuyer@gmail.com");
+					String testoutput = "User name: " + "John" + "\nemail: " + "testBuyer@gmail.com" + "\nrole: " + "buyer" + "\npassword: " + "1234abcd" + "\nlogin: " + "false" + "\n";
 					assertEquals("Test if it display out the correct output",testoutput, output);
 				}
 					
