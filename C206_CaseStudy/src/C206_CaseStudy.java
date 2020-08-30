@@ -128,12 +128,11 @@ public class C206_CaseStudy {
 							}
 					}else if(buyeroption == 4) {
 						//SEARCH USERS
-						System.out.println("Testing");
 						String emailToFind = Helper.readString("Enter an email to find: ");
 						C206_CaseStudy.searchUser(emailToFind);
 						
 					}else if(buyeroption == 5) {
-						//UPDATE USERS
+						//UPDATE USERS ACCOUNT
 						
 						String buyersEmail = Helper.readString("Enter an email to find: ");
 						
@@ -151,8 +150,7 @@ public class C206_CaseStudy {
 									System.out.println("Password Must have a Minimum  of 8 Characters");
 									pass= Helper.readString("Enter your new password: ");
 								}
-							}
-							else {
+							}else {
 								System.out.println("No email exist.");
 							}
 						}
@@ -722,9 +720,9 @@ public class C206_CaseStudy {
 			itemList.get(i).setStartDate(startDate);
 			itemList.get(i).setEndDate(endDate);
 			itemList.get(i).setBidIncrement(bidIncrement);
-			System.out.println("");
-			System.out.println("You have successfully updated your item!");
 			}
+		System.out.println("");
+		System.out.println("You have successfully updated your item!");
 		}
 	//----------------------------- Item ---------------------------------- (Anisa)//
 //----------------------------- Users ---------------------------------- (Si Yuan)//
@@ -807,7 +805,7 @@ public class C206_CaseStudy {
 			}
 			
 			if (isThere) 
-				output += userList.get(i).toString();
+				output += userList.get(i).searchEmail();
 			else 
 				output += "User email does not exist";
 			System.out.println(output);

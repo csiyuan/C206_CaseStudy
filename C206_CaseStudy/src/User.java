@@ -69,6 +69,9 @@ public class User {
 	public String toString() {
 		return  name + role + email + password;
 	}
+	public String searchEmail() {
+		return "Name: " + name + "\nRole: " + role + "\nEmail: " + email;
+	}
 
 	
 
